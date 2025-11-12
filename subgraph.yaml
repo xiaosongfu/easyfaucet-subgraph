@@ -16,20 +16,40 @@ dataSources:
       apiVersion: 0.0.9
       language: wasm/assemblyscript
       entities:
-        - Initialized
+        # - Initialized
         - NewFaucet
-        - OwnershipTransferred
-        - Upgraded
+        # - OwnershipTransferred
+        # - Upgraded
       abis:
         - name: EasyFaucetFactory
           file: ./abis/EasyFaucetFactory.json
       eventHandlers:
-        - event: Initialized(uint64)
-          handler: handleInitialized
+        # - event: Initialized(uint64)
+        #   handler: handleInitialized
         - event: NewFaucet(indexed address,string,address)
           handler: handleNewFaucet
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: Upgraded(indexed address)
-          handler: handleUpgraded
+        # - event: OwnershipTransferred(indexed address,indexed address)
+        #   handler: handleOwnershipTransferred
+        # - event: Upgraded(indexed address)
+        #   handler: handleUpgraded
+      file: ./src/easy-faucet-factory.ts
+  - kind: ethereum
+    name: EasyFaucetFactory
+    network: sepolia
+    source:
+      address: "0xcf471471C1eEaD02B4A7c76686BB99e54745D827"
+      abi: EasyFaucetFactory
+      startBlock: 9594114
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - NewFaucet
+      abis:
+        - name: EasyFaucetFactory
+          file: ./abis/EasyFaucetFactory.json
+      eventHandlers:
+        - event: NewFaucet(indexed address,string,address)
+          handler: handleNewFaucet
       file: ./src/easy-faucet-factory.ts
